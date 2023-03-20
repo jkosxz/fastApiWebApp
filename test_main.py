@@ -17,8 +17,18 @@ def test_root_endpoint_with_get(client):
     expected = {"message": msg}
     assert resp.json() == expected
 
+
 def test_root_custom_endpoint_with_get(client):
     name = "John"
+    resp = client.get(f"/hello/{name}")
+    assert resp.status_code == 200
+    msg = f"Hello {name}"
+    expected = {"message": msg}
+    assert resp.json() == expected
+
+
+def test_root_custom_endpoint_with_get_2(client):
+    name = "0000123123000"
     resp = client.get(f"/hello/{name}")
     assert resp.status_code == 200
     msg = f"Hello {name}"

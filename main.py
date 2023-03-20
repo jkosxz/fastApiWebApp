@@ -10,7 +10,7 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
 async def root():
-    return "strona startowa"
+    return {'message': "Hello World"}
 
 
 @app.get("/index/", response_class=HTMLResponse)
