@@ -1,29 +1,23 @@
-from fastapi import FastAPI
-import requests
-from starlette.responses import FileResponse
-import json
-
-import post
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+
+templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/")
 async def root():
-    return FileResponse('templates/index.html')
+    return "strona startowa"
+
+
+@app.get("/index/", response_class=HTMLResponse)
+async def read_item(request: Request, id: str):
+    return templates.TemplateResponse("index.html", {"request": request, "id": id})
+
 
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
-
-@app.get("/test/")
-async def test():
-    return testpost.test_func()
-
-response = requests.get("https://jsonplaceholder.typicode.com/posts")
-res = json.loads(response.content)
-
-
-temp = dict(res[1])
-testpost = post.Post(temp["userId"], temp["id"], temp["title"], temp["body"])
-
