@@ -9,15 +9,10 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/")
-async def root():
-    return {'message': "Hello World"}
+async def root(request: Request):
+    return templates.TemplateResponse("layout.html", {"request": request, "id": id})
 
 
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
-
-
-@app.get("/items/{id}", response_class=HTMLResponse)
-async def send_index(request: Request, id: str):
-    return templates.TemplateResponse("item.html", {"request": request, "id": id})

@@ -10,8 +10,13 @@ def client():
     return client
 
 
-def test_root_endpoint_with_get(client):
+def test_root_endpoint_connection_with_root(client):
     resp = client.get("/")
+    assert resp.status_code == 200
+
+
+def test_root_endpoint_with_get(client):
+    resp = client.get("/hello/World")
     assert resp.status_code == 200
     msg = "Hello World"
     expected = {"message": msg}
@@ -20,15 +25,6 @@ def test_root_endpoint_with_get(client):
 
 def test_root_custom_endpoint_with_get(client):
     name = "John"
-    resp = client.get(f"/hello/{name}")
-    assert resp.status_code == 200
-    msg = f"Hello {name}"
-    expected = {"message": msg}
-    assert resp.json() == expected
-
-
-def test_root_custom_endpoint_with_get_2(client):
-    name = "0000123123000"
     resp = client.get(f"/hello/{name}")
     assert resp.status_code == 200
     msg = f"Hello {name}"
