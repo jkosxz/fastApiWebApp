@@ -1,41 +1,42 @@
-MyApp
-FastApi app for unit test cases
+# FastApiWebApp
+My project that is used for test cases
 
-Requirements
-Python 3.x
-FastApi module
-
-Instalation
-
-bash
-Copy code
-git clone https://github.com/twojusername/MyApp.git
-
-Go to projects directory:
-
-bash
-Copy code
-cd MyApp
-Install requirements:
-
-Copy code
+## Installation
+- Clone repository
+```bash
+git clone https://github.com/jkosxz/fastApiWebApp
+```
+- go to project's directory
+```bash
+cd fastApiWebApp
+```
+- Install requirements
+```
 pip install -r requirements.txt
+```
+ 
 
-Running
+## Requirements
+- Python 3.x
+- FastApi module
+
+
+
+## Usage
 To run you have to:
 
-- go to projects dir
+- go to projects directory
 
-bash
-Copy code
-cd MyApp
+```bash
+cd fastApiWebApp
+```
+- run FastApi server
 
-run FastApi server:
+```bash
+uvicorn main:app --reload
+```
 
-Copy code
-flask run
-
-- Open browser and go to address: http://127.0.0.1:8000 
-
-Authors
+## Authors
 - Jakub Kos
+
+Please make sure to update tests as appropriate.
