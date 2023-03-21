@@ -13,11 +13,11 @@ async def root():
     return {'message': "Hello World"}
 
 
-@app.get("/index/", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
-    return templates.TemplateResponse("index.html", {"request": request, "id": id})
-
-
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
+
+
+@app.get("/items/{id}", response_class=HTMLResponse)
+async def send_index(request: Request, id: str):
+    return templates.TemplateResponse("item.html", {"request": request, "id": id})
