@@ -1,16 +1,34 @@
-from unittest.mock import patch, MagicMock
-
+import unittest
+from unittest.mock import patch, MagicMock, Mock
+import requests
 from starlette.testclient import TestClient
 
 import main
 
 
-def test_my_func():
-    with TestClient(main.app) as client:
-        test_mock = MagicMock(return_value={"message": "Hello John"})
+class jsonPlaceHolderFetcher:
+    def __init__(self):
+        self.url = "https://jsonplaceholder.typicode.com"
 
-        with patch('main.say_hello', test_mock):
-            response = client.get("/hello/John")
+    def connectToEndpoint(self, endpoint):
+        response = requests.get(self.url + endpoint)
+        return response.status_code
 
-        assert response.status_code == 200
-        assert response.json() == {"message": "Hello John"}
+    def fetch_json(self, endpoint):
+        response = requests.get(self.url + f"{endpoint}")
+        return response.json()
+
+    def test(self, endpoint):
+        response = requests.get("https://jsonplaceholder.typicode.com" + endpoint)
+        return response.status_code
+
+
+def test_api_call():
+    real = jsonPlaceHolderFetcher()
+    real.connectToEndpoint = MagicMock(name="connectToEndpoint")
+    real.connectToEndpoint.return_value.status_code = 200
+
+    with patch("requests.get", real):
+        data = real.connectToEndpoint("/").status_code
+
+    assert data == 200
