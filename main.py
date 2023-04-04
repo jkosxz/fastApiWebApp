@@ -20,20 +20,18 @@ var = jsonPlaceHolderFetcher()
 users = json.loads(var.fetch_json("/users"))
 
 data = []
-
 for user in users:
     d = dict(user)
-    for v in d.values():
-        data.append(v)
+    data.append(list(d.values()))
 
+print(data)
 @app.get("/")
 async def root(request: Request):
+    return templates.TemplateResponse("layout.html", {"request": request})
+
+@app.get("/users")
+async def users(request: Request):
     return templates.TemplateResponse("users.html", {
         "request": request,
         "users": users,
         "data": data})
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
