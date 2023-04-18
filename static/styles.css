@@ -1,14 +1,10 @@
 body {
   background-color: powderblue;
 }
-h1 {
-  color: blue;
-}
-p {
-  color: red;
-}
-table{
+
+table, th, td{
+  table-layout: fixed;
+  column-width: 600px;
   width: 100%;
   border: 2px solid black;
-  border-collapse: collapse;
 }

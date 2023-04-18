@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+      <link rel="stylesheet" href="../static/styles.css">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Fast Api Project</title>
+  </head>
+  <h1>Wszystkie posty</h1>
+  <body>
+    <table>
+        <tr>
+            <th>userID</th>
+            <th>id</th>
+            <th>title</th>
+            <th>body</th>
+        </tr>
+        {% for row in data_posts %}
+        <tr>
+            {% for cell in row %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+  </body>
+</html>
