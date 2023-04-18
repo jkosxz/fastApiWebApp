@@ -10,13 +10,12 @@
   <body>
     <table>
         <tr>
-            <th>ID</th>
-            <th>Imie</th>
-            <th>Nickname</th>
-            <th>Email</th>
-            <th>Adres</th>
+            <th>userID</th>
+            <th>id</th>
+            <th>title</th>
+            <th>body</th>
         </tr>
-        {% for row in data_users %}
+        {% for row in data_posts %}
         <tr>
             {% for cell in row %}
             <td>{{ cell }}</td>

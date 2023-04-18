@@ -3,7 +3,8 @@ body {
 }
 
 table, th, td{
-  width: 75%;
+  table-layout: fixed;
+  column-width: 600px;
+  width: 100%;
   border: 2px solid black;
-  border-collapse: collapse;
 }
