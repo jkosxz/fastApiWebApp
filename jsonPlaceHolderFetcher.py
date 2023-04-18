@@ -14,10 +14,14 @@ class jsonPlaceHolderFetcher:
         response = requests.get(self.url + f"{endpoint}")
         return response.content
 
-
     def fetch_data(self, endpoint):
         data = []
         for item in json.loads(self.__fetch_json(f"{endpoint}")):
             dict_items = dict(item)
             data.append(list(dict_items.values()))
         return data
+
+    def fetch_comments(self):
+        data = {}
+
+

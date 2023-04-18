@@ -37,5 +37,6 @@ async def mainpage(request: Request):
     return templates.TemplateResponse("mainpage.html", {
         "request": request,
         "data_posts": jsonFetcher.fetch_data("/posts"),
-        "data_comments": jsonFetcher.fetch_data("/comments")
+        "data_comments": jsonFetcher.fetch_data("/comments"),
+        "data_users": jsonFetcher.fetch_data("/users")
     })
