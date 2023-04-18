@@ -1,5 +1,4 @@
 import json
-
 import requests
 
 
@@ -11,20 +10,14 @@ class jsonPlaceHolderFetcher:
         response = requests.get(self.url + endpoint)
         return response.status_code
 
-    def fetch_json(self, endpoint):
+    def __fetch_json(self, endpoint):
         response = requests.get(self.url + f"{endpoint}")
         return response.content
 
-    def fetch_posts(self):
-        data_users = []
-        for user in json.loads(self.fetch_json("/posts")):
-            dict_users = dict(user)
-            data_users.append(list(dict_users.values()))
-        return data_users
 
-    def fetch_users(self):
-        data_posts = []
-        for user in json.loads(self.fetch_json("/users")):
-            dict_users = dict(user)
-            data_posts.append(list(dict_users.values()))
-        return data_posts
+    def fetch_data(self, endpoint):
+        data = []
+        for item in json.loads(self.__fetch_json(f"{endpoint}")):
+            dict_items = dict(item)
+            data.append(list(dict_items.values()))
+        return data

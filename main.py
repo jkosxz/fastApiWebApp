@@ -1,12 +1,6 @@
-import json
-from unittest.mock import MagicMock, patch
-
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from starlette.testclient import TestClient
-
 from jsonPlaceHolderFetcher import jsonPlaceHolderFetcher
 
 app = FastAPI()
@@ -26,14 +20,14 @@ async def root(request: Request):
 async def users(request: Request):
     return templates.TemplateResponse("users.html", {
         "request": request,
-        "data_users": jsonFetcher.fetch_users()})
+        "data_users": jsonFetcher.fetch_data("/users")})
 
 
 @app.get("/posts")
 async def posts(request: Request):
     return templates.TemplateResponse("posts.html", {
         "request": request,
-        "data_posts": jsonFetcher.fetch_posts()
+        "data_posts": jsonFetcher.fetch_data("/posts"),
 
     })
 
@@ -42,5 +36,6 @@ async def posts(request: Request):
 async def mainpage(request: Request):
     return templates.TemplateResponse("mainpage.html", {
         "request": request,
-        "data": data
+        "data_posts": jsonFetcher.fetch_data("/posts"),
+        "data_comments": jsonFetcher.fetch_data("/comments")
     })
