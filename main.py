@@ -31,12 +31,33 @@ async def posts(request: Request):
 
     })
 
-
 @app.get("/mainpage")
 async def mainpage(request: Request):
     return templates.TemplateResponse("mainpage.html", {
         "request": request,
-        "data_posts": jsonFetcher.fetch_data("/posts"),
+        "data_posts": jsonFetcher.fetch_data("/posts")[0: 11],
         "data_comments": jsonFetcher.fetch_data("/comments"),
-        "data_users": jsonFetcher.fetch_data("/users")
+        "data_users": jsonFetcher.fetch_data("/users"),
+        "posts_count": 10
+
+    })
+@app.get("/mainpage/{num}")
+async def mainpage_p(request: Request, num: int):
+    return templates.TemplateResponse("mainpage.html", {
+        "request": request,
+        "data_posts": jsonFetcher.fetch_data("/posts")[num*10: num*10+11],
+        "data_comments": jsonFetcher.fetch_data("/comments"),
+        "data_users": jsonFetcher.fetch_data("/users"),
+
+    })
+
+@app.get("/mainpage/post/{postid}")
+async def mainpage_post(request: Request, postid: int):
+    return templates.TemplateResponse("singlepost.html", {
+        "request": request,
+        "data_posts": jsonFetcher.fetch_data("/posts")[postid - 1],
+        "data_comments": jsonFetcher.fetch_data("/comments"),
+        "data_users": jsonFetcher.fetch_data("/users"),
+        "postid": postid
+
     })
