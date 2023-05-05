@@ -8,9 +8,9 @@
   </head>
   <h1>Mainpage</h1>
   <body>
-    {% for i in range(0, data_posts|length) %}
+    {% for i in range(0, 10) %}
     <h1>{{data_users[data_posts[i][0] - 1][1]}}</h1>
-    <h2>{{data_posts[i][2]}}</h2>
+    <h2><a href="/mainpage/post/{{data_posts[i][1]}}">{{data_posts[i][2]}}</a></h2>
     <h1>tresc</h1>
     <h3>{{data_posts[i][3]}}</h3>
     <h1>komentarze</h1>
@@ -22,6 +22,14 @@
         {% endfor %}
     <h2>================</h2>
     {% endfor %}
+  <div class="pagination">
+      <a href="">&laquo;</a>
+      {% for i in range (0, 10) %}
+        <a href="http://127.0.0.1:8000/mainpage/{{i + 1}}">{{i + 1}}</a>
+      {% endfor %}
+      <a href="">&raquo;</a>
+</div>
+
 
   </body>
 </html>

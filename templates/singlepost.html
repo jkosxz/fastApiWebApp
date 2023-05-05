@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+      <link rel="stylesheet" href="/static/styles.css">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Fast Api Project</title>
+  </head>
+  <h1>Post nr {{postid}}</h1>
+  <body>
+    <h1>{{data_users[data_posts[0] - 1][1]}}</h1>
+    <h2>{{data_posts[2]}}</h2>
+    <h1>tresc</h1>
+    <h3>{{data_posts[3]}}</h3>
+    <h1>komentarze</h1>
+        {% for j in range(0, data_comments|length) %}
+            {% if data_comments[j][0] == postid %}
+                <h3>{{data_comments[j][3]}}</h3>
+                <h4>{{data_comments[j][4]}}</h4>
+            {% endif %}
+        {% endfor %}
+  </body>
+</html>

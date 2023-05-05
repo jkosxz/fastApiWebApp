@@ -21,7 +21,4 @@ class jsonPlaceHolderFetcher:
             data.append(list(dict_items.values()))
         return data
 
-    def fetch_comments(self):
-        data = {}
-
 
