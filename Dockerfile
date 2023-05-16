@@ -1,6 +1,5 @@
- # syntax=docker/dockerfile:1
-
 FROM python:3.8-slim-buster
+WORKDIR /fastApiWebApp
 COPY . /fastApiWebApp
 RUN pip install --no-cache-dir -r /fastApiWebApp/requirements.txt
 
