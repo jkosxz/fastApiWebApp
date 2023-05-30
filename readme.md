@@ -1,3 +1,4 @@
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
 # FastApiWebApp
 My project that is used for test cases
 
