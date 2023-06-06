@@ -27,15 +27,6 @@ async def users(request: Request):
         "data_users": jsonFetcher.fetch_data("/users")})
 
 
-@app.get("/posts")
-async def posts(request: Request):
-    """posts endpoint - all posts"""
-    return templates.TemplateResponse("posts.html", {
-        "request": request,
-        "data_posts": jsonFetcher.fetch_data("/posts"),
-
-    })
-
 @app.get("/mainpage")
 async def mainpage(request: Request):
     """mainpage - page with all the posts with comments with href on post's titles"""
